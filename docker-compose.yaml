@@ -1,0 +1,25 @@
+version: '3.5'
+services:
+  # POSTGRES CONTAINER
+  postgres_db15:
+    build: .
+    container_name: postgres_db15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ilhamefo
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - 5435:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - efo_networks
+#Docker Networks
+volumes:
+  pgdata:
+    driver: local
+networks:
+  efo_networks:
+    name: efo_networks
+    external: true
